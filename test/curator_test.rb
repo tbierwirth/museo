@@ -67,5 +67,12 @@ class CuratorTest < Minitest::Test
     @curator.add_artist(@artist_2)
 
     assert_equal [@artist_1, @artist_2], @curator.artists
+    assert_equal @artist_1, @curator.artists.first
+    assert_equal "Henri Cartier-Bresson", @curator.artists.first.name
   end
+
+  def test_find_by_id
+    assert_equal @artist_1, @curator.find_artist_by_id("1")
+  end
+
 end
