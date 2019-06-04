@@ -1,5 +1,4 @@
 require './lib/file_io'
-require 'pry'
 
 class Curator
   attr_reader :artists, :photographs
@@ -26,12 +25,6 @@ class Curator
       end
     end
   end
-  #
-  # def find_artist_by_id(id)
-  #   @artists.find do |artist|
-  #     artist.id == id
-  #   end
-  # end
 
   def find_photo_by_id(id)
     @photographs.find do |photograph|
