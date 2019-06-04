@@ -37,6 +37,8 @@ class CuratorTest < Minitest::Test
     @curator.add_photograph(@photo_2)
 
     assert_equal [@photo_1, @photo_2], @curator.photographs
+    assert_equal @photo_1, @curator.photographs.first
+    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", @curator.photographs.first.name
   end
 
 end
