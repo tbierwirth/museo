@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/photograh'
+require './lib/photograph'
 
 class PhotographTest < Minitest::Test
 
@@ -15,7 +15,7 @@ class PhotographTest < Minitest::Test
   end
 
   def test_it_exists
-    assert_instance_of Photoraph, @photograh
+    assert_instance_of Photograph, @photograph
   end
 
 end
