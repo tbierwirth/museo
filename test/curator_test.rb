@@ -232,4 +232,38 @@ class CuratorTest < Minitest::Test
     assert_equal [artist_1, artist_2, artist_3, artist_4, artist_5, artist_6], @curator.artists
   end
 
+  def test_find_photographs_by_date_range
+    @curator.load_photographs('./data/photographs.csv')
+    @curator.load_artists('./data/artists.csv')
+
+    photo_1 = {
+      id: "1",
+      name: "Rue Mouffetard, Paris (Boy with Bottles)",
+      artist_id: "1",
+      year: "1954"
+    }
+
+    photo_2 = {
+      id: "2",
+      name: "Moonrise, Hernandez",
+      artist_id: "2",
+      year: "1941"
+    }
+    photo_3 = {
+      id: "3",
+      name: "Identical Twins, Roselle, New Jersey",
+      artist_id: "3",
+      year: "1967"
+    }
+
+    photo_4 = {
+      id: "4",
+      name: "Child with Toy Hand Grenade in Central Park",
+      artist_id: "3",
+      year: "1962"
+    }
+
+    assert_equal [photo_1, photo_4], @curator.photographs_taken_between(1950..1965)
+  end
+
 end
