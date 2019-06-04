@@ -65,5 +65,12 @@ class Curator
     artists << FileIO.load_artists(file)
     artists.flatten!
   end
-  
+
+  def photographs_taken_between(range)
+    years = range.to_a
+    @photographs.find_all do |photograph|
+      years.include?(photograph[:year].to_i)
+    end
+  end
+
 end
