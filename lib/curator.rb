@@ -1,3 +1,4 @@
+require './lib/file_io'
 class Curator
   attr_reader :artists, :photographs
 
@@ -55,4 +56,14 @@ class Curator
     end.flatten
   end
 
+  def load_photographs(file)
+    photographs << FileIO.load_photographs(file)
+    photographs.flatten!
+  end
+
+  def load_artists(file)
+    artists << FileIO.load_artists(file)
+    artists.flatten!
+  end
+  
 end
