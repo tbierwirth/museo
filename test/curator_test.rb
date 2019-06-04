@@ -129,7 +129,11 @@ class CuratorTest < Minitest::Test
     @curator.add_photograph(@photo_3)
     @curator.add_photograph(@photo_4)
 
+    diane_arbus = @curator.find_artist_by_id("3")
+
     assert_equal [@artist_3], @curator.artists_with_multiple_photographs
+    assert_equal 1, @curator.artists_with_multiple_photographs.length
+    assert diane_arbus == @curator.artists_with_multiple_photographs.first
   end
 
 end
