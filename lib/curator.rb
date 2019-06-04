@@ -32,4 +32,14 @@ class Curator
     end
   end
 
+  def artists_with_multiple_photographs
+    ids = @photographs.map do |photograph|
+      photograph.artist_id
+    end
+    multiple = ids.select{|id| ids.count(id) > 1}
+    multiple.uniq.map do |id|
+      find_artist_by_id(id)
+    end
+  end
+
 end
