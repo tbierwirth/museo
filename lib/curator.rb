@@ -1,4 +1,6 @@
 require './lib/file_io'
+require 'pry'
+
 class Curator
   attr_reader :artists, :photographs
 
@@ -17,9 +19,19 @@ class Curator
 
   def find_artist_by_id(id)
     @artists.find do |artist|
-      artist.id == id
+      if artist.class == Hash
+        artist[:id] == id
+      else
+        artist.id == id
+      end
     end
   end
+  #
+  # def find_artist_by_id(id)
+  #   @artists.find do |artist|
+  #     artist.id == id
+  #   end
+  # end
 
   def find_photo_by_id(id)
     @photographs.find do |photograph|
@@ -71,6 +83,17 @@ class Curator
     @photographs.find_all do |photograph|
       years.include?(photograph[:year].to_i)
     end
+  end
+
+  def artists_photographs_by_age(artist)
+    hash = Hash.new
+    photos = @photographs.select do |photograph|
+      photograph[:artist_id] == artist[:id]
+    end
+    photos.each do |photo|
+      hash[photo[:year].to_i - artist[:born].to_i] = photo[:name]
+    end
+    hash
   end
 
 end
